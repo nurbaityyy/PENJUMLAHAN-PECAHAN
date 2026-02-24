@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NURBAITY| Penjumlahan Pecahan</title>
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            /* Latar belakang dengan gradien Peach */
+            background: linear-gradient(rgba(255, 218, 185, 0.9), rgba(255, 218, 185, 0.9)),
+                        url('https://www.transparenttextures.com/patterns/white-diamond.png'); 
+            color: #5d4037; /* Warna teks cokelat tua agar kontras dengan peach */
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255, 127, 80, 0.9); /* Coral */
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 24px;
+            color: #ffffff !important;
+            text-decoration: none;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 15px 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ff7f50; /* Coral */
+        }
+
+        /* SECTION */
+        .section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(255, 127, 80, 0.15);
+            border: 2px solid #ffdab9; /* Peach Puff */
+        }
+
+        /* GEOGEBRA & VIEWER BOX */
+        .geo-box {
+            background: #fff5ee; /* Seashell (Off-white peach) */
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 5px solid #ff7f50;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            border: 3px solid #ffdab9;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* TAB MENU */
+        .tab-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .tab-menu button {
+            background: #ffffff;
+            color: #ff7f50;
+            border: 2px solid #ff7f50;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .tab-menu button:hover, .tab-menu button.active {
+            background: #ff7f50;
+            color: #ffffff;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* INPUT & BUTTONS */
+        .form-control {
+            border: 2px solid #ffdab9;
+        }
+        
+        .form-control:focus {
+            border-color: #ff7f50;
+            box-shadow: 0 0 0 0.25rem rgba(255, 127, 80, 0.25);
+        }
+
+        .btn-primary {
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+        }
+
+        .btn-primary:hover {
+            background-color: #e67348;
+            border-color: #e67348;
+        }
+
+        .btn-outline-info {
+            color: #d2691e;
+            border-color: #ff7f50;
+        }
+
+        .btn-outline-info:hover {
+            background-color: #ff7f50;
+            color: white;
+        }
+
+        .text-warning { color: #d2691e !important; } /* Lebih ke arah terracotta/brownish peach */
+        .text-info { color: #ff7f50 !important; }
+
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar fixed-top">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="brand" href="#">
+            <i class="fa-solid fa-apple-whole"></i> NURBAITY
+        </a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <small class="text-uppercase fw-bold text-danger">🍑 Belajar Matematika Seru</small>
+        <h1 class="mt-2">PENJUMLAHAN PECAHAN</h1>
+        <p class="mt-3" style="color: #6d4c41;">Media interaktif untuk memahami cara menjumlahkan pecahan biasa dengan penyebut sama maupun berbeda dengan suasana yang nyaman.</p>
+
+        <div class="geo-box mb-4">
+            <h4 class="text-warning mb-2"><i class="fa-solid fa-calculator"></i> Apa itu Pecahan?</h4>
+            <p style="text-align:justify">
+                <b>Pecahan</b> adalah bagian dari keseluruhan. Ditulis dalam bentuk <b>a/b</b>, di mana <b>a</b> disebut pembilang (bagian yang kita miliki) dan <b>b</b> disebut penyebut (total bagian keseluruhan). 
+            </p>
+            <h5 class="text-info mt-3">Konsep Dasar:</h5>
+            <ul class="list-unstyled">
+                <li><i class="fa-solid fa-check-circle text-success"></i> Jika <b>penyebut sama</b>, langsung jumlahkan pembilangnya.</li>
+                <li><i class="fa-solid fa-check-circle text-success"></i> Jika <b>penyebut berbeda</b>, samakan dulu penyebutnya (cari KPK).</li>
+                <li><i class="fa-solid fa-check-circle text-success"></i> Hasil akhir sebaiknya disederhanakan.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fa-solid fa-eye"></i> Eksplorasi Visual Pecahan</h2>
+            <div class="tab-menu mt-3">
+                <button class="active" onclick="openTab(this,'konsep')">Konsep Dasar</button>
+            </div>
+
+            <div class="geo-box">
+                <div id="konsep" class="tab-content active">
+                    <div class="iframe-wrapper mb-3">
+                        <iframe src="https://www.geogebra.org/material/iframe/id/y6hzemvb/width/1280/height/720/rc/false/ai/false"></iframe>
+                    </div>
+                    <h5 class="text-warning">🧠 Aktivitas 1: Analisis Visual</h5>
+                    <p>Bayangkan sebuah pizza peach dipotong menjadi 4 bagian. Jika kamu makan 1 potong (1/4) dan kakakmu makan 1 potong (1/4), berapa total yang dimakan?</p>
+                    <textarea class="form-control mb-3" placeholder="Ketik jawabanmu (misal: 2/4)..."></textarea>
+                    
+                    <h5 class="text-warning">✍️ Aktivitas 2: Cek Pemahaman</h5>
+                    <p>Berapakah hasil dari 1/5 + 2/5 ?</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('konsep', '3/5', this)">2/5</button>
+                        <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('konsep', '3/5', this)">3/5</button>
+                        <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('konsep', '3/5', this)">3/10</button>
+                    </div>
+                    <div id="res-konsep" class="mt-2 fw-bold"></div>
+                </div>
+            </div>
+        </div>
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar fixed-top">
+    <div class="container">
+        <a class="brand" href="#"><i class="fa-solid fa-apple-whole"></i> Nurbaity</a>
+    </div>
+</nav>
+<div class="container">
+        <small class="text-uppercase fw-bold text-danger">🍑 Tantangan 10 Soal Pecahan</small>
+        <p class="mt-3" style="color: #6d4c41;">Selesaikan semua tantangan di bawah ini untuk menjadi ahli pecahan!</p>
+
+        <div class="section">
+            <h2 class="text-info mb-4"><i class="fa-solid fa-gamepad"></i> Math-Game Zone (10 Soal)</h2>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">1. Ibu memiliki 1/4 kg gula dan membeli lagi 1/4 kg. Berapa total gula Ibu sekarang?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g1', 'benar', this)">1/2 kg</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g1', 'salah', this)">2/8 kg</button>
+                    <div id="game-g1" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">2. Untuk menjumlahkan 1/2 + 1/3, angka berapakah yang cocok jadi penyebut bersama?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g2', 'salah', this)">5</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g2', 'benar', this)">6</button>
+                    <div id="game-g2" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">3. Berapa hasil dari 2/7 + 3/7?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g3', 'salah', this)">5/14</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g3', 'benar', this)">5/7</button>
+                    <div id="game-g3" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">4. Hasil dari 1/5 + 2/5 adalah...</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g4', 'benar', this)">3/5</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g4', 'salah', this)">3/10</button>
+                    <div id="game-g4" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">5. 1/2 + 1/4 = ... (Samakan penyebut menjadi 4)</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g5', 'salah', this)">2/6</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g5', 'benar', this)">3/4</button>
+                    <div id="game-g5" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">6. Manakah hasil terkecil dari penjumlahan berikut?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g6', 'benar', this)">1/8 + 1/8</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g6', 'salah', this)">1/4 + 1/4</button>
+                    <div id="game-g6" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">7. 3/10 + 4/10 = ...</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g7', 'salah', this)">7/20</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g7', 'benar', this)">7/10</button>
+                    <div id="game-g7" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">8. Jika 1/3 + 1/3 + 1/3 dijumlahkan, hasilnya adalah?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g8', 'benar', this)">1 (Satu Utuh)</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g8', 'salah', this)">3/9</button>
+                    <div id="game-g8" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">9. 2/5 + 1/10 = ... (Samakan penyebut menjadi 10)</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g9', 'benar', this)">5/10 (atau 1/2)</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g9', 'salah', this)">3/15</button>
+                    <div id="game-g9" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+            <div class="card border-0 mb-3 shadow-sm" style="background: #fffaf0;">
+                <div class="card-body">
+                    <h6 class="text-warning">10. Dalam 5/9, manakah yang merupakan pembilang?</h6>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g10', 'benar', this)">Angka 5</button>
+                    <button class="btn btn-primary btn-sm m-1" onclick="cekGame('g10', 'salah', this)">Angka 9</button>
+                    <div id="game-g10" class="mt-1 small fw-bold"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<script>
+    function openTab(btn, id) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    function cekEksplorasi(idTarget, kunci, elemen) {
+        let res = document.getElementById('res-' + idTarget);
+        if (elemen.innerText.trim() === kunci) {
+            res.innerHTML = "<span class='text-success'>✅ Hebat! Hitunganmu tepat.</span>";
+        } else {
+            res.innerHTML = "<span class='text-danger'>❌ Ops, kurang tepat.</span>";
+        }
+    }
+
+    function cekGame(id, status, elemen) {
+        let res = document.getElementById('game-' + id);
+        if (status === 'benar') {
+            res.innerHTML = "<span class='text-success'>🍑 MANIS! Jawabanmu benar.</span>";
+        } else {
+            res.innerHTML = "<span class='text-danger'>☁️ Coba hitung lagi pelan-pelan!</span>";
+        }
+    }
+</script>
+
+</body>
+</html>
